@@ -7,10 +7,12 @@
   "author": "Dušan Simić <dusan.simic1810@gmail.com> (http://dusansimic.cf)",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.24.0",
+    "this": "^1.0.2",
     "xo": "^0.18.2"
   },
   "scripts": {
-    "test": "xo"
+    "test": "xo && ava"
   },
   "dependencies": {
     "is-uuid": "^1.0.2",

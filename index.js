@@ -1,1 +1,1 @@
-module.exports = require('./src/codb');
+module.exports = require('./src/yoctodb');
