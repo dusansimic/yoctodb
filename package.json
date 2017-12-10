@@ -1,0 +1,19 @@
+{
+  "name": "yoctodb",
+  "version": "0.0.0",
+  "description": "Simple document based database.",
+  "main": "index.js",
+  "repository": "https://github.com/dusansimic/yoctodb.git",
+  "author": "Dušan Simić <dusan.simic1810@gmail.com> (http://dusansimic.cf)",
+  "license": "MIT",
+  "devDependencies": {
+    "xo": "^0.18.2"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "dependencies": {
+    "is-uuid": "^1.0.2",
+    "uuid": "^3.1.0"
+  }
+}
