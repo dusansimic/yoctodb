@@ -11,6 +11,20 @@ YoctoDB.prototype.insert = function (object) {
 			return reject(new Error('Object is not of type object!'));
 		}
 
+		if (Array.isArray(object)) {
+			for (let i = 0; i < object.length; i++) {
+				if (!('_id' in object)) {
+					object[i]._id = uuid();
+				}
+				if (!isUUID(object[i]._id)) {
+					object[i]._id = uuid();
+				}
+
+				this.db.push(object[i]);
+			}
+			return resolve(object);
+		}
+
 		if (!('_id' in object)) {
 			object._id = uuid();
 		}

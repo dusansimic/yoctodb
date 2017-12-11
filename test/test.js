@@ -1,8 +1,9 @@
 import test from 'ava';
 import YoctoDB from 'this';
 
-test.serial('YoctoDB is a porototype finction', t => {
-	t.is(typeof YoctoDB, 'function');
+test.serial('YoctoDB is a class', t => {
+	const db = new YoctoDB();
+	t.is(db instanceof constructor, true);
 	t.notThrows(() => new YoctoDB());
 });
 
@@ -11,10 +12,21 @@ test.serial('Insert test', async t => {
 	await t.notThrows(db.insert({
 		foo: 'bar'
 	}).then(docs => {
-		t.is(typeof docs, 'object');
+		t.is(docs instanceof Object, true);
 		t.is(docs.foo, 'bar');
 	}).catch(err => {
-		console.error(err);
+		t.is(err instanceof Error, false);
+	}));
+});
+
+test.serial('Insert many test', async t => {
+	const db = new YoctoDB();
+	await t.notThrows(db.insert([{foo: 'bar'}, {fizz: 'buzz'}]).then(docs => {
+		t.is(Array.isArray(docs), true);
+		t.is(docs[0].foo, 'bar');
+		t.is(docs[1].fizz, 'buzz');
+	}).catch(err => {
+		t.is(err instanceof Error, false);
 	}));
 });
 
@@ -24,20 +36,20 @@ test.serial('Find test', async t => {
 	await t.notThrows(db.insert({
 		foo: 'bar'
 	}).then(docs => {
-		t.is(typeof docs, 'object');
+		t.is(docs instanceof Object, true);
 		t.is(docs.foo, 'bar');
 		object = docs;
 	}).catch(err => {
-		console.error(err);
+		t.is(err instanceof Error, false);
 	}));
 
 	await t.notThrows(db.find({
 		foo: 'bar'
 	}).then(docs => {
-		t.is(typeof docs, 'object');
+		t.is(object instanceof Object, true);
 		t.deepEqual(docs[0], object);
 	}).catch(err => {
-		console.error(err);
+		t.is(err instanceof Error, false);
 	}));
 });
 
@@ -46,10 +58,10 @@ test.serial('Update test', async t => {
 	await t.notThrows(db.insert({
 		foo: 'bar'
 	}).then(docs => {
-		t.is(typeof docs, 'object');
+		t.is(docs instanceof Object, true);
 		t.is(docs.foo, 'bar');
 	}).catch(err => {
-		console.error(err);
+		t.is(err instanceof Error, false);
 	}));
 
 	await t.notThrows(db.update({
@@ -57,10 +69,10 @@ test.serial('Update test', async t => {
 	}, {
 		foo: 'foo'
 	}).then(docs => {
-		t.is(typeof docs, 'object');
+		t.is(docs instanceof Object, true);
 		t.is(docs[0].foo, 'foo');
 	}).catch(err => {
-		console.error(err);
+		t.is(err instanceof Error, false);
 	}));
 });
 
@@ -69,18 +81,18 @@ test.serial('Delete test', async t => {
 	await t.notThrows(db.insert({
 		foo: 'bar'
 	}).then(docs => {
-		t.is(typeof docs, 'object');
+		t.is(docs instanceof Object, true);
 		t.is(docs.foo, 'bar');
 	}).catch(err => {
-		console.error(err);
+		t.is(err instanceof Error, false);
 	}));
 
 	await t.notThrows(db.delete({
 		foo: 'bar'
 	}).then(docs => {
-		t.is(typeof docs, 'object');
+		t.is(docs instanceof Object, true);
 		t.deepEqual(docs, [undefined]);
 	}).catch(err => {
-		console.error(err);
+		t.is(err instanceof Error, false);
 	}));
 });
