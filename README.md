@@ -36,7 +36,7 @@ db.insert({foo: 'bar'}).then(docs => {
 Find that data
 ```javascript
 db.find({foo: 'bar'}).then(docs => {
-	console.log('This was found!);
+	console.log('This was found!');
 	console.log(docs);
 }).catch(err => {
 	console.error('Nothing was found!');
